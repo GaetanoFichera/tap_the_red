@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -167,14 +168,11 @@ class _GamePageState extends State<GamePageSF> {
     }
   }
 
-  void _endGame(){
+  void _endGame()async {
     _stopTimer();
-    /*
-    Navigator.push(
-      context,
-      new MaterialPageRoute(builder: (_context) => new EndPageSF(punteggio: _punteggio,)),
-    );
-    */
+
+    /* la funzione che la contiene deve ridare "Future"
+
     Navigator.of(context).push(new PageRouteBuilder(pageBuilder:
         (context, animation, secondaryAnimation) {
       // directly construct the your widget here with whatever object you want
@@ -182,6 +180,16 @@ class _GamePageState extends State<GamePageSF> {
           debugPrint(_punteggio.toString());
           return new EndPageSF(punteggio: _punteggio,);
     }));
+    */
+
+    bool riprova = await Navigator.push(context, new MaterialPageRoute<bool>(
+        builder: (BuildContext context) {
+          return new EndPageSF(punteggio: _punteggio,);
+        }
+    ));
+
+    if (riprova) this.initState();
+    else exit(0);
   }
 
   bool _IsEndGame(){
