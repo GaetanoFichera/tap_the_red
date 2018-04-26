@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tap_the_red/View/GamePage.dart';
+import 'package:tap_the_red/View/HomePage.dart';
 
-void main() => runApp(new GamePageSL());
+void main() => runApp(new HomePageSL());
 
 /*
 class MyApp extends StatelessWidget {

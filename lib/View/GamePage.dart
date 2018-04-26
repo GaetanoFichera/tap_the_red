@@ -3,19 +3,18 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tap_the_red/View/EndPage.dart';
 
 class GamePageSL extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    return new GamePageSF();
   }
 }
 
 class GamePageSF extends StatefulWidget {
-  GamePageSF({Key key, this.title}) : super(key: key);
-
-  final String title;
+  //GamePageSF({Key key, this.title}) : super(key: key);
 
   @override
   _GamePageState createState() => new _GamePageState();
@@ -148,11 +147,7 @@ class _GamePageState extends State<GamePageSF> {
       )
     );
 
-    MaterialApp app = new MaterialApp(
-      home: page,
-    );
-
-    return app;
+    return page;
   }
 
   void _addRedButton(){
@@ -182,14 +177,14 @@ class _GamePageState extends State<GamePageSF> {
     }));
     */
 
-    bool riprova = await Navigator.push(context, new MaterialPageRoute<bool>(
+    bool newGame = await Navigator.push(context, new MaterialPageRoute<bool>(
         builder: (BuildContext context) {
-          return new EndPageSF(punteggio: _punteggio,);
+          return new EndPageSL(this._punteggio);
         }
     ));
 
-    if (riprova) this.initState();
-    else exit(0);
+    if (newGame) Navigator.pop(context, true);
+    else Navigator.pop(context, false);
   }
 
   bool _IsEndGame(){
