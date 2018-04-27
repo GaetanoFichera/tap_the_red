@@ -45,7 +45,7 @@ class _GamePageState extends State<GamePageSF> {
 
   Widget _buildOverGrid(){
     return new Text(
-      "LIVELLO " + _livello.toString() + "\nPUNTEGGIO " + _punteggio.toString(),
+      "LEVEL " + _livello.toString() + "\nPOINTS " + _punteggio.toString(),
       textAlign: TextAlign.center,
       style: new TextStyle(
         fontWeight: FontWeight.bold,

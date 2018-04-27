@@ -47,7 +47,7 @@ class _EndPageState extends State<EndPageSF> {
                 children: [
                   new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 8, horizontal: _screenSize.width / 8),),
                   new Text(
-                    'HAI PERSO!'/**\n\nPUNTEGGIO FINALE\n' + _punteggio.toString()*/,
+                    'THE END!'/**\n\nPUNTEGGIO FINALE\n' + _punteggio.toString()*/,
                     textAlign: TextAlign.center,
                     style: new TextStyle(
                       fontWeight: FontWeight.bold,

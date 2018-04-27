@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePageSF> {
                       minWidth: _screenSize.width / (1.1 * 2),
                       color: Colors.lightBlue,
                       child: new Text(
-                        'GIOCA',
+                        'PLAY',
                         style: new TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: _screenSize.width / (_fontRatio * 2),
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePageSF> {
                     ),
                     new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 4.5, horizontal: _screenSize.width / 110),),
                     new Text(
-                      'Sviluppato da Gaetano Fichera\n@GaetanoFichera on Github',
+                      'Developed by Gaetano Fichera\n@GaetanoFichera on Github',
                       style: new TextStyle(
                         color: Colors.white,
                         fontSize: _screenSize.width / (_fontRatio * 5),
