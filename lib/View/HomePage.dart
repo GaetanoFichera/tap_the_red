@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePageSF> {
                     color: Colors.white,
                   ),
                 ),
-                new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 17, horizontal: _screenSize.width / 110),),
+                new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 8, horizontal: _screenSize.width / 110),),
                 new Column(
                   children: <Widget>[
                     new MaterialButton(
@@ -71,12 +71,12 @@ class _HomePageState extends State<HomePageSF> {
                       textColor: Colors.white,
                       onPressed: _startGame,
                     ),
-                    new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 4.5, horizontal: _screenSize.width / 110),),
+                    new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 7, horizontal: _screenSize.width / 110),),
                     new Text(
-                      'Developed by Gaetano Fichera\n@GaetanoFichera on Github',
+                      'Developed by Gaetano Fichera\n@GaetanoFichera on GitHub',
                       style: new TextStyle(
                         color: Colors.white,
-                        fontSize: _screenSize.width / (_fontRatio * 5),
+                        fontSize: _screenSize.width / (_fontRatio * 3.7),
                       ),
                     ),
                   ],

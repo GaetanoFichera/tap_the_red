@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class EndPageSL extends StatelessWidget{
@@ -67,7 +70,7 @@ class _EndPageState extends State<EndPageSF> {
                           color: Colors.white,
                           size: _screenSize.width / (1.1 * 5),
                         ),
-                        onPressed: () { Navigator.pop(context, true); },
+                        onPressed: _newGame,
                       ),
                       new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.width / 80, horizontal: _screenSize.width / 800),),
                       new MaterialButton(
@@ -79,7 +82,7 @@ class _EndPageState extends State<EndPageSF> {
                           color: Colors.white,
                           size: _screenSize.width / (1.1 * 5),
                         ),
-                        onPressed: () { Navigator.pop(context, false); },
+                        onPressed: _backHome,
                       ),
                     ],
                   ),
@@ -89,6 +92,17 @@ class _EndPageState extends State<EndPageSF> {
         ),
     );
 
-    return page;
+    //necessario per gestire la pressione del tasto back, sennò ritornava allo stato finale della partita
+    WillPopScope willPopScope = new WillPopScope(child: page, onWillPop: _backHome);
+
+    return willPopScope;
+  }
+
+  Future<bool> _backHome(){
+    Navigator.of(context).pop(false);
+  }
+
+  Future<bool> _newGame(){
+    Navigator.of(context).pop(true);
   }
 }
