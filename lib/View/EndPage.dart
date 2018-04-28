@@ -147,16 +147,11 @@ class _EndPageState extends State<EndPageSF> {
   Future _saveScore()async {
     debugPrint('Vedo se Aggiornare il Punteggio');
     String keyBestScore = 'bestScore';
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int lastBestScore = prefs.get(keyBestScore);
-    if (lastBestScore != null) {
-      debugPrint('Miglior Punteggio Salvato: ' + lastBestScore.toString());
-      if (this._punteggio > lastBestScore) {
-        debugPrint('Aggiorno il Punteggio');
-        await prefs.setInt(keyBestScore, this._punteggio);
-      }
-    } else {
-      debugPrint('Primo Punteggio da salvare');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    int lastBestScore = prefs.get(keyBestScore) ?? 0;
+    debugPrint('Miglior Punteggio Salvato: ' + lastBestScore.toString());
+    if (this._punteggio > lastBestScore) {
+      debugPrint('Aggiorno il Punteggio');
       await prefs.setInt(keyBestScore, this._punteggio);
     }
 

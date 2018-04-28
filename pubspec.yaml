@@ -3,6 +3,7 @@ description: Simple Mobile Game developed with Flutter
 
 dependencies:
   shared_preferences:
+
   flutter_launcher_icons: "^0.2.1"
 
   flutter:

@@ -175,16 +175,14 @@ class _HomePageState extends State<HomePageSF> {
   Future _checkBestScore() async {
     debugPrint('Controllo che ci sia un Punteggio salvato');
     String keyBestScore = 'bestScore';
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int lastBestScore = prefs.get(keyBestScore);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    int lastBestScore = prefs.get(keyBestScore) ?? 0;
     debugPrint('Punteggio Migliore: ' + this._bestScore.toString());
-    if (lastBestScore != null){
-      if (lastBestScore > this._bestScore){
-        setState(() {
-          debugPrint('Punteggio migliore trovato!');
-          this._bestScore = lastBestScore;
-        });
-      }
+    if (lastBestScore > this._bestScore){
+      setState(() {
+        debugPrint('Punteggio migliore trovato!');
+        this._bestScore = lastBestScore;
+      });
     }
   }
 }
