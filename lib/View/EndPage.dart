@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EndPageSL extends StatelessWidget{
   int _punteggio;
@@ -27,73 +27,111 @@ class _EndPageState extends State<EndPageSF> {
   int _punteggio;
 
   Size _screenSize;
-  int _fontRatio = 8;
+  double _fontRatio = 5.5;
 
   BuildContext _context;
 
-  _EndPageState(int _punteggio);
+  _EndPageState(this._punteggio);
 
   @override
   Widget build(BuildContext context) {
 
     debugPrint(_punteggio.toString());
 
+    _saveScore();
+
     _context = context;
 
     _screenSize = MediaQuery.of(context).size;
 
-    Scaffold page = new Scaffold(
-        body: new Container(
-            decoration: new BoxDecoration(color: Colors.redAccent),
-            child: new Center(
-              child: new ListView(
-                children: [
-                  new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 8, horizontal: _screenSize.width / 8),),
-                  new Text(
-                    'THE END!'/**\n\nPUNTEGGIO FINALE\n' + _punteggio.toString()*/,
-                    textAlign: TextAlign.center,
-                    style: new TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: _screenSize.width / _fontRatio,
-                      color: Colors.white,
-                    ),
-                  ),
-                  new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 20, horizontal: _screenSize.width / 20),),
-                  new Column(
-                    children: [
-                      new MaterialButton(
-                        height: _screenSize.width / (1.1 * 4),
-                        minWidth: _screenSize.width / (1.1 * 2),
-                        color: Colors.grey,
-                        child: new Icon(
-                          Icons.keyboard_return,
-                          color: Colors.white,
-                          size: _screenSize.width / (1.1 * 5),
-                        ),
-                        onPressed: _newGame,
-                      ),
-                      new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.width / 80, horizontal: _screenSize.width / 800),),
-                      new MaterialButton(
-                        height: _screenSize.width / (1.1 * 4),
-                        minWidth: _screenSize.width / (1.1 * 2),
-                        color: Colors.grey,
-                        child: new Icon(
-                          Icons.cancel,
-                          color: Colors.white,
-                          size: _screenSize.width / (1.1 * 5),
-                        ),
-                        onPressed: _backHome,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )
+    Padding littlelittleSkip = new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 30, horizontal: _screenSize.width / 110),);
+    Padding littleSkip = new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 17, horizontal: _screenSize.width / 110),);
+    Padding bigSkip = new Padding(padding: new EdgeInsets.symmetric(vertical: _screenSize.height / 13, horizontal: _screenSize.width / 110),);
+
+    Text endText = new Text(
+      'THE END!',
+      textAlign: TextAlign.center,
+      style: new TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: _screenSize.width / _fontRatio,
+        color: Colors.white,
+      ),
+    );
+
+    Text finalScoreText = new Text(
+      'FINAL SCORE: ' + this._punteggio.toString(),
+      textAlign: TextAlign.center,
+      style: new TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: _screenSize.width / (_fontRatio * 2),
+        color: Colors.white,
+      ),
+    );
+
+    Container endTextBox = new Container(
+      child: new Center(
+        child: new Column(
+          children: <Widget>[
+            endText,
+            finalScoreText
+          ],
         ),
+      ),
+    );
+
+    Icon newGameIcon = new Icon(
+      Icons.keyboard_return,
+      color: Colors.white,
+      size: _screenSize.width / (1.1 * 5),
+    );
+
+    MaterialButton newGameButton = new MaterialButton(
+      height: _screenSize.width / (1.1 * 4),
+      minWidth: _screenSize.width / (1.1 * 2),
+      color: Colors.grey,
+      child: newGameIcon,
+      textColor: Colors.white,
+      onPressed: _newGame,
+    );
+
+    Icon backHomeIcon = new Icon(
+      Icons.cancel,
+      color: Colors.white,
+      size: _screenSize.width / (1.1 * 5),
+    );
+
+    MaterialButton backHomeButton = new MaterialButton(
+    height: _screenSize.width / (1.1 * 4),
+    minWidth: _screenSize.width / (1.1 * 2),
+    color: Colors.grey,
+    child: backHomeIcon,
+    onPressed: _backHome,
+    );
+
+    Container mainContainer = new Container(
+        decoration: new BoxDecoration(color: Colors.redAccent),
+        child: new Center(
+          child: new ListView(
+            children: [
+              bigSkip,
+              endTextBox,
+              littleSkip,
+              newGameButton,
+              littlelittleSkip,
+              backHomeButton,
+            ],
+          ),
+        )
+    );
+
+    Scaffold page = new Scaffold(
+      body: mainContainer,
     );
 
     //necessario per gestire la pressione del tasto back, sennò ritornava allo stato finale della partita
-    WillPopScope willPopScope = new WillPopScope(child: page, onWillPop: _backHome);
+    WillPopScope willPopScope = new WillPopScope(
+        child: page,
+        onWillPop: _backHome);
 
     return willPopScope;
   }
@@ -104,5 +142,23 @@ class _EndPageState extends State<EndPageSF> {
 
   Future<bool> _newGame(){
     Navigator.of(context).pop(true);
+  }
+
+  Future _saveScore()async {
+    debugPrint('Vedo se Aggiornare il Punteggio');
+    String keyBestScore = 'bestScore';
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int lastBestScore = prefs.get(keyBestScore);
+    if (lastBestScore != null) {
+      debugPrint('Miglior Punteggio Salvato: ' + lastBestScore.toString());
+      if (this._punteggio > lastBestScore) {
+        debugPrint('Aggiorno il Punteggio');
+        await prefs.setInt(keyBestScore, this._punteggio);
+      }
+    } else {
+      debugPrint('Primo Punteggio da salvare');
+      await prefs.setInt(keyBestScore, this._punteggio);
+    }
+
   }
 }

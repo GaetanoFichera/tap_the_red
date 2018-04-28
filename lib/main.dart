@@ -1,27 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:tap_the_red/View/GamePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tap_the_red/View/HomePage.dart';
 
-void main() => runApp(new HomePageSL());
-
-/*
-class MyApp extends StatelessWidget {
-  final String title = 'PTR: Push The Red';
-
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-
-    return new MaterialApp(
-      title: this.title,
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: new GamePageSF(title: this.title),
-    );
-  }
+void main() {
+  SharedPreferences.setMockInitialValues({});
+  runApp(new HomePageSL());
 }
-*/

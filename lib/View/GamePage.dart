@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:tap_the_red/View/EndPage.dart';
 
 class GamePageSL extends StatelessWidget{
@@ -25,6 +23,8 @@ class _GamePageState extends State<GamePageSF> {
   final Color _colorDisattivato = Colors.lightBlueAccent;
   final Color _colorAttivato = Colors.redAccent;
 
+  var _decreaseDelayValue = const Duration(milliseconds:150);
+
   int _punteggio = 0;
   int _buttonsN = 16;
   int _gridDim = 0;
@@ -45,7 +45,7 @@ class _GamePageState extends State<GamePageSF> {
 
   Widget _buildOverGrid(){
     return new Text(
-      "LEVEL " + _livello.toString() + "\nPOINTS " + _punteggio.toString(),
+      "STAGE " + _livello.toString() + "\nSCORE " + _punteggio.toString(),
       textAlign: TextAlign.center,
       style: new TextStyle(
         fontWeight: FontWeight.bold,
@@ -166,17 +166,6 @@ class _GamePageState extends State<GamePageSF> {
   void _endGame()async {
     _stopTimer();
 
-    /* la funzione che la contiene deve ridare "Future"
-
-    Navigator.of(context).push(new PageRouteBuilder(pageBuilder:
-        (context, animation, secondaryAnimation) {
-      // directly construct the your widget here with whatever object you want
-      // to pass in.
-          debugPrint(_punteggio.toString());
-          return new EndPageSF(punteggio: _punteggio,);
-    }));
-    */
-
     bool newGame = await Navigator.push(context, new MaterialPageRoute<bool>(
         builder: (BuildContext context) {
           return new EndPageSL(this._punteggio);
@@ -209,9 +198,10 @@ class _GamePageState extends State<GamePageSF> {
   }
 
   void _speedTimer() {
-    if (_delay >= const Duration(milliseconds:200)){
+    //controllo se il delay di ora è superiore a quello che voglio togliere
+    if (_delay > _decreaseDelayValue){
       _timer.cancel();
-      _delay = _delay - const Duration(milliseconds:150);
+      _delay = _delay - _decreaseDelayValue;
       _timer = Timer.periodic(_delay, (Timer t) => _addRedButton());
       debugPrint('Timer Speed Up! ' + 'Nuovo Delay: ' + _delay.toString());
     }
