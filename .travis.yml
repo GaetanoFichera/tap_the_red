@@ -2,9 +2,9 @@ os: osx
 language: generic
 osx_image: xcode8.3
 before_script:
-  - ./.travis/install.sh
+  - sh ./.travis/install.sh
 script:
-  - ./.travis/script.sh
+  - sh ./.travis/script.sh
 
 cache:
   directories:
