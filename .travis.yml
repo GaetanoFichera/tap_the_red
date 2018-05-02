@@ -1,4 +1,3 @@
-# ENVIRONMENTS
 os: osx
 language: generic
 osx_image: xcode8.3
@@ -14,4 +13,4 @@ script:
 
 cache:
   directories:
-- $HOME/.pub-cache
+    - $HOME/.pub-cache
