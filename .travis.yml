@@ -16,7 +16,7 @@ deploy:
     repo: GaetanoFichera/tap_the_red
     branches: 
       only:
-       - master
+       - dev
 cache:
   directories:
   - "$HOME/.pub-cache"
