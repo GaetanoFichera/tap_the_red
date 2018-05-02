@@ -2,14 +2,9 @@ os: osx
 language: generic
 osx_image: xcode8.3
 before_script:
-  - pip2 install six
-  - brew update
-  - brew install --HEAD libimobiledevice
-  - brew install ideviceinstaller
-  - brew install ios-deploy
-  - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
+  - ./.travis/install.sh
 script:
-  - ./flutter/bin/flutter -v build ios --no-codesign
+  - ./.travis/script.sh
 
 cache:
   directories:
