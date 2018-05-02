@@ -1,5 +1,5 @@
-os:
-  - osx
+# ENVIRONMENTS
+os: osx
 language: generic
 osx_image: xcode9.2
 before_script:
@@ -14,4 +14,4 @@ script:
 
 cache:
   directories:
-- $HOME/.pub-cache
+    - $HOME/.pub-cache
