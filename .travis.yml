@@ -14,6 +14,9 @@ deploy:
   file: "tap_the_red/build/ios/iphoneos/Runner.app"
   on:
     repo: GaetanoFichera/tap_the_red
+    branches: 
+      only:
+       - master
 cache:
   directories:
   - "$HOME/.pub-cache"
