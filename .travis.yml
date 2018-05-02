@@ -11,7 +11,7 @@ deploy:
   provider: releases
   api_key:
     secure: nn4dtUu8snB7z4r3HXgTmLYqPD5WmiqD4FnzV8K2GzPENvsRRof3fDfybHKtuoANXh2psryoHSptaSMHlitZsLgqgNkKYaiLGTyogjt4NEp2Vx1CocyIc/Tob7FbA4QwUly8DIwqMS0JyhfK8PkaBHplk1KSYsd08C9QMKts0+JSkKkJhfqmfSW7eJTBLK8b90BU5yw910b2TXd/y4urFXeSlT94vfJKrdZNXFHIneMzCVN2AqOdOWkIxDQDupxU11UDxbOueCCidL/vAMP9Ol9ZHzr/H9gWwZSOPH/jrKDP7q2GPeglVnR4FF+doN03aqJ2pxDztHrhaDwaD1rKDIUxHYBq3dC3cSqWiDWzDhCV9AlAj4XFXONuqOGWkAEyEoZZRJvNZMYxZr1b30nj/WvXvvOoadAf3te4bh3J4/1HoqM1oPIZcuPdp9iRiXsn7DJUywovITXEaoClvzxSeFXlrAhuc23Wh60VCMFnMa+E6031nLpu7nXu0pDaTCp9sEHd+SlP6lnDnbGWKbKy0oKt7qF3gwbGUEUI4Q1gyIga99FfWqeJmFLy5ADJ2oMsQ6EZYoAJL7G6O+v2FtTEoubS21vPnpEc5m/kK/0tflrt0Vtet8IpyO4gXz7dlg6LO1A9USEClxm6vw83yj7x0e/SuI9CTd1M1Dbe3cyqX6k=
-  file: "tap_the_red/build/ios/iphoneos/Runner.app"
+  file: tap_the_red/build/ios/iphoneos/Runner.app
   on:
     repo: GaetanoFichera/tap_the_red
     branches: 
