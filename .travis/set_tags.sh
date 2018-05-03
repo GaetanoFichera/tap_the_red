@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-zip -rj iphoneos.zip build/ios/iphoneos
+zip -r iphoneos.zip build/ios/iphoneos
 
 BRANCH="master"
 
