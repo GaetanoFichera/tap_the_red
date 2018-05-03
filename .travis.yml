@@ -14,9 +14,7 @@ deploy:
   file: "iphoneos.zip"
   on:
     repo: "GaetanoFichera/tap_the_red"
-    branches: 
-      only:
-       - dev
+    all_branches: true
 cache:
   directories:
   - "$HOME/.pub-cache"
