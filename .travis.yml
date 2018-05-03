@@ -5,8 +5,6 @@ before_script:
 - sh ./.travis/install.sh
 script:
 - sh ./.travis/script.sh
-after_success:
-- sh ./.travis/set_tags.sh
 deploy:
   provider: releases
   api_key:
