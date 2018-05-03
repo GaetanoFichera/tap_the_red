@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BRANCH="dev"
+BRANCH="master"
 
 # Are we on the right branch?
 if [ "$TRAVIS_BRANCH" = "$BRANCH" ]; then
