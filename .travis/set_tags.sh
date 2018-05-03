@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+zip -rj iphoneos.zip build/ios/iphoneos
+
 BRANCH="master"
 
 # Are we on the right branch?
