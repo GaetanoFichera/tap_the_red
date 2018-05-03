@@ -22,6 +22,9 @@ if [ "$TRAVIS_BRANCH" = "$BRANCH" ]; then
       git push origin --tags
       git fetch origin
 
+      cd build/ios/iphoneos/
+      ls
+
       echo -e "Done magic with tags.\n"
     fi
   fi
