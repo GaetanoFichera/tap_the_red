@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 zip -r iphoneos.zip build/ios/iphoneos
+git add iphoneos.zip
+git commit -a iphoneos.zip
 
 BRANCH="master"
 
